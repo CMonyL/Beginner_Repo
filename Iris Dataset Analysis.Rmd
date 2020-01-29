@@ -27,7 +27,7 @@ The dataset describes three classes of flowers:
 As well as their sepal length/width and petal length/width. 
 ```{r cars}
 iris_data <- iris
-head(iris_data)
+describe(iris)
 ```
 
 ## Including Plots
