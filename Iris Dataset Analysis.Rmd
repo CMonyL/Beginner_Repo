@@ -67,7 +67,33 @@ My understanding is that in the *real world*, datasets are not always going to b
 The *is.null* function can be used to check if the object contains null values. 
 
 If the output is *TRUE*, then our dataset does contain NULL values, and therefore we can either choose to omit them from our analysis or do something else. However, if the output is *FALSE*, then our dataset *DOES NOT* contain null values (which is a good thing!). 
+
 ```{r}
 is.null(iris_data)
+
 ```
 
+There is also the skim function, found in the *skimr package* that will scan your entire dataset and summarise, check for null values and more!
+```{r}
+#install.packages("skimr)
+#library(skimr)
+skim(iris_data)
+```
+
+
+Suggested by Indrajeet Patil, who also created ggstatsplot2, you can visualise your dataset as well as display missing data by using the vis_miss() function, and vis_dat() function. 
+```{r}
+#install.packages("devtools")
+#library(devtools)
+#devtools::install_github("ropensci/visdat")
+#library(visdat)
+vis_miss(iris_data)
+```
+This output shows that there are no missing entries in the dataset. This visualisation should look a little different as we explore more unstructured/semi-structured datasets.
+```{r}
+vis_dat(iris_data)
+```
+
+This vis_dat  output shows you a ggplot object of what is inside the dataframe. Cells are colored according to what class they are and whether the values are missing. Being a ggplot object, you can customise the plot and/or change the labels if needed. 
+
+Now that we've checked to make sure that the dataset is cleaned and ready to use, lets do some visualisations.
