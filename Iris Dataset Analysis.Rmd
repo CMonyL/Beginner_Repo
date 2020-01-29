@@ -25,17 +25,49 @@ The dataset describes three classes of flowers:
  * Virginica
 
 As well as their sepal length/width and petal length/width. 
-```{r cars}
+
+The first line of code will assign the iris dataset to an object called "iris_data". This will allow for more functions to be applied to the object at a later stage of this EDA. 
+
+The head() function will display the first 5 rows of the dataset. 
+
+The dim() function wil describe the dimensions of the iris dataset (or "iris_data" object). The function shows that there are 150 rows of data with 5 headings. 
+
+```{r head_iris}
 iris_data <- iris
-describe(iris)
+head(iris_data)
+dim(iris_data)
 ```
 
-## Including Plots
+By referring to the previous head() function, we can see that the 5 headings are: 
+ * Sepal.Length
+ * Sepal.Width
+ * Petal.Length
+ * Petal.Width
+ * Species
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+The summary() function allows us to see summary statistics of the dataset. 
+```{r summary_iris}
+summary(iris_data)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Interestingly enough, it also shows the unique values of each flower, and their occurences in the dataset which is seeen in the "species" column.
+
+
+
+A useful function to see the *type* of data in the dataset is sapply().
+e.g. sapply(data, typeof)
+
+```{r}
+sapply(iris_data, typeof)
+```
+
+This shows that all the data in this dataset are of type *double*, with the exception of species which is *integer*.
+
+My understanding is that in the *real world*, datasets are not always going to be clean, and some entries may have null values. 
+The *is.null* function can be used to check if the object contains null values. 
+
+If the output is *TRUE*, then our dataset does contain NULL values, and therefore we can either choose to omit them from our analysis or do something else. However, if the output is *FALSE*, then our dataset *DOES NOT* contain null values (which is a good thing!). 
+```{r}
+is.null(iris_data)
+```
+
