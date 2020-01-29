@@ -12,10 +12,22 @@ knitr::opts_chunk$set(echo = TRUE)
 ## The beginning
 Hello World!
 
+I am far from being experienced in data science, therefore I figured I should start with one of the most common datasets in the world; the *IRIS* dataset.
 
+This dataset is was commonly referred to in throughout my university courses as a means to introduce various machine learning/statistical concepts. 
 
+Fortunately this dataset is already built into R, which makes it a suitable candidate for a beginner Exploratory Data Analysis (EDA). 
+
+The dataset describes three classes of flowers:
+
+ * Setosa
+ * Versicolor
+ * Virginica
+
+As well as their sepal length/width and petal length/width. 
 ```{r cars}
-summary(cars)
+iris_data <- iris
+head(iris_data)
 ```
 
 ## Including Plots
