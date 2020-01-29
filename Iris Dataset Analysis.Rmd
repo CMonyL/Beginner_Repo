@@ -2,7 +2,7 @@
 title: "Iris Dataset analysis"
 author: "Chan Mony Lach"
 date: "29/01/2020"
-output: html_document
+output: rmarkdown::github_document
 ---
 
 ```{r setup, include=FALSE}
