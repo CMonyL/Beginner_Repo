@@ -112,3 +112,81 @@ is.null(iris_data)
 ```
 
     ## [1] FALSE
+
+There is also the skim function, found in the *skimr package* that will
+scan your entire dataset and summarise, check for null values and more\!
+
+``` r
+#install.packages("skimr)
+library(skimr)
+skim(iris_data)
+```
+
+|                                                  |            |
+| :----------------------------------------------- | :--------- |
+| Name                                             | iris\_data |
+| Number of rows                                   | 150        |
+| Number of columns                                | 5          |
+| \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_   |            |
+| Column type frequency:                           |            |
+| factor                                           | 1          |
+| numeric                                          | 4          |
+| \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ |            |
+| Group variables                                  | None       |
+
+Data summary
+
+**Variable type:
+factor**
+
+| skim\_variable | n\_missing | complete\_rate | ordered | n\_unique | top\_counts               |
+| :------------- | ---------: | -------------: | :------ | --------: | :------------------------ |
+| Species        |          0 |              1 | FALSE   |         3 | set: 50, ver: 50, vir: 50 |
+
+**Variable type:
+numeric**
+
+| skim\_variable | n\_missing | complete\_rate | mean |   sd |  p0 | p25 |  p50 | p75 | p100 | hist  |
+| :------------- | ---------: | -------------: | ---: | ---: | --: | --: | ---: | --: | ---: | :---- |
+| Sepal.Length   |          0 |              1 | 5.84 | 0.83 | 4.3 | 5.1 | 5.80 | 6.4 |  7.9 | ▆▇▇▅▂ |
+| Sepal.Width    |          0 |              1 | 3.06 | 0.44 | 2.0 | 2.8 | 3.00 | 3.3 |  4.4 | ▁▆▇▂▁ |
+| Petal.Length   |          0 |              1 | 3.76 | 1.77 | 1.0 | 1.6 | 4.35 | 5.1 |  6.9 | ▇▁▆▇▂ |
+| Petal.Width    |          0 |              1 | 1.20 | 0.76 | 0.1 | 0.3 | 1.30 | 1.8 |  2.5 | ▇▁▇▅▃ |
+
+Suggested by Indrajeet Patil, who also created ggstatsplot2, you can
+visualise your dataset as well as display missing data by using the
+vis\_miss() function, and vis\_dat() function by utilizing the visdat
+library.
+
+``` r
+#install.packages("devtools")
+library(devtools)
+```
+
+    ## Loading required package: usethis
+
+``` r
+#devtools::install_github("ropensci/visdat")
+library(visdat)
+vis_miss(iris_data)
+```
+
+![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+This output shows that there are no missing entries in the dataset. This
+visualisation should look a little different as we explore more
+unstructured/semi-structured
+datasets.
+
+``` r
+vis_dat(iris_data)
+```
+
+![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+This vis\_dat output shows you a ggplot object of what is inside the
+dataframe. Cells are colored according to what class they are and
+whether the values are missing. Being a ggplot object, you can customise
+the plot and/or change the labels if needed.
+
+Now that we’ve checked to make sure that the dataset is cleaned and
+ready to use, lets do some visualisations.

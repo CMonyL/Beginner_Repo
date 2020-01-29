@@ -76,17 +76,17 @@ is.null(iris_data)
 There is also the skim function, found in the *skimr package* that will scan your entire dataset and summarise, check for null values and more!
 ```{r}
 #install.packages("skimr)
-#library(skimr)
+library(skimr)
 skim(iris_data)
 ```
 
 
-Suggested by Indrajeet Patil, who also created ggstatsplot2, you can visualise your dataset as well as display missing data by using the vis_miss() function, and vis_dat() function. 
+Suggested by Indrajeet Patil, who also created ggstatsplot2, you can visualise your dataset as well as display missing data by using the vis_miss() function, and vis_dat() function by utilizing the visdat library.
 ```{r}
 #install.packages("devtools")
-#library(devtools)
+library(devtools)
 #devtools::install_github("ropensci/visdat")
-#library(visdat)
+library(visdat)
 vis_miss(iris_data)
 ```
 This output shows that there are no missing entries in the dataset. This visualisation should look a little different as we explore more unstructured/semi-structured datasets.
