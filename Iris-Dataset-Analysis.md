@@ -191,7 +191,42 @@ the plot and/or change the labels if needed.
 Now that we’ve checked to make sure that the dataset is cleaned and
 ready to use, lets do some visualisations.
 
+Scatterplots are a great way to determine if there is a linear
+correlation between different variables in your dataset.
+
+By using the pairs() function from the ggplot package, we are able to
+create a scatterplot matrix.
+
+``` r
+#install.packages("ggplot2")
+#library(ggplot2)
+pairs(~Sepal.Length+Sepal.Width+Petal.Length+Sepal.Width,data=iris_data, main="Iris Scatterplot Matrix")
+```
+
+![](Iris-Dataset-Analysis_files/figure-gfm/scatterplot-1.png)<!-- -->
+The scatterplot matrix shows that the Sepal Length and Petal Length are
+highly correlated. In other words, if the Sepal Length of the flower is
+long, we can expect the petal length to be long as well, and vice versa.
+
+However, at times reading a scatterplot matrix can be difficult, as it
+is used to determine *rough* linear correlations.
+
+``` r
+data(iris_data)
+```
+
+    ## Warning in data(iris_data): data set 'iris_data' not found
+
+``` r
+library(ggplot2)
+library(reshape2)
+qplot(x=Var1, y=Var2, data=melt(cor(iris_data[,1:4])), fill=value, geom="tile")
+```
+
+![](Iris-Dataset-Analysis_files/figure-gfm/heatmap-1.png)<!-- -->
+
 References:
 
+<https://www.r-bloggers.com/scatterplot-matrices/>
 \#<https://www.littlemissdata.com/blog/simple-eda>
 \#<https://medium.com/@rishav.jnit/exploratory-data-analysis-eda-on-iris-dataset-using-python-cadd850c1fc6>
