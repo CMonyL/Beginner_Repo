@@ -97,3 +97,27 @@ vis_dat(iris_data)
 This vis_dat  output shows you a ggplot object of what is inside the dataframe. Cells are colored according to what class they are and whether the values are missing. Being a ggplot object, you can customise the plot and/or change the labels if needed. 
 
 Now that we've checked to make sure that the dataset is cleaned and ready to use, lets do some visualisations.
+
+Scatterplots are a great way to determine if there is a linear correlation between different variables in your dataset. 
+
+By using the pairs() function from the ggplot package, we are able to create a scatterplot matrix.
+
+```{r scatterplot}
+#install.packages("ggplot2")
+#library(ggplot2)
+pairs(~Sepal.Length+Sepal.Width+Petal.Length+Sepal.Width,data=iris_data, main="Iris Scatterplot Matrix")
+```
+The scatterplot matrix shows that the Sepal Length and Petal Length are highly correlated. In other words, if the Sepal Length of the flower is long, we can expect the petal length to be long as well, and vice versa. 
+
+However, at times reading a scatterplot matrix can be difficult, as it is used to determine *rough* linear correlations.
+
+```{r heatmap}
+heatmap(~Petal.Length+Petal.Width+Sepal.Length+Sepal.Width, data=iris_data)
+```
+
+
+References:
+
+https://www.r-bloggers.com/scatterplot-matrices/
+#https://www.littlemissdata.com/blog/simple-eda
+#https://medium.com/@rishav.jnit/exploratory-data-analysis-eda-on-iris-dataset-using-python-cadd850c1fc6

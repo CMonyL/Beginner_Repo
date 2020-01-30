@@ -190,3 +190,8 @@ the plot and/or change the labels if needed.
 
 Now that we’ve checked to make sure that the dataset is cleaned and
 ready to use, lets do some visualisations.
+
+References:
+
+\#<https://www.littlemissdata.com/blog/simple-eda>
+\#<https://medium.com/@rishav.jnit/exploratory-data-analysis-eda-on-iris-dataset-using-python-cadd850c1fc6>
