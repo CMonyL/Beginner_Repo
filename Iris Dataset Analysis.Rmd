@@ -113,9 +113,16 @@ However, at times reading a scatterplot matrix can be difficult, as it is used t
 
 ```{r heatmap}
 data(iris_data)
-library(ggplot2)
+
+#library(reshape2)
+#qplot(x=Var1, y=Var2, data=melt(cor(iris_data[,1:4])), fill=value, geom="tile")
+
 library(reshape2)
-qplot(x=Var1, y=Var2, data=melt(cor(iris_data[,1:4])), fill=value, geom="tile")
+melted_iris <- melt(iris_data)
+head(melted_iris)
+
+library(ggplot2)
+#ggplot(data = iris_data[,1:4], aes(x=Var1, y=Var2, fill=value)) + geom_tile()
 ```
 
 

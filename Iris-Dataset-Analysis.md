@@ -218,12 +218,31 @@ data(iris_data)
     ## Warning in data(iris_data): data set 'iris_data' not found
 
 ``` r
-library(ggplot2)
+#library(reshape2)
+#qplot(x=Var1, y=Var2, data=melt(cor(iris_data[,1:4])), fill=value, geom="tile")
+
 library(reshape2)
-qplot(x=Var1, y=Var2, data=melt(cor(iris_data[,1:4])), fill=value, geom="tile")
+melted_iris <- melt(iris_data)
 ```
 
-![](Iris-Dataset-Analysis_files/figure-gfm/heatmap-1.png)<!-- -->
+    ## Using Species as id variables
+
+``` r
+head(melted_iris)
+```
+
+    ##   Species     variable value
+    ## 1  setosa Sepal.Length   5.1
+    ## 2  setosa Sepal.Length   4.9
+    ## 3  setosa Sepal.Length   4.7
+    ## 4  setosa Sepal.Length   4.6
+    ## 5  setosa Sepal.Length   5.0
+    ## 6  setosa Sepal.Length   5.4
+
+``` r
+library(ggplot2)
+#ggplot(data = iris_data[,1:4], aes(x=Var1, y=Var2, fill=value)) + geom_tile()
+```
 
 References:
 
