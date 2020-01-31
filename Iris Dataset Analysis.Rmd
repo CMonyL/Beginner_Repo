@@ -111,20 +111,25 @@ The scatterplot matrix shows that the Sepal Length and Petal Length are highly c
 
 However, at times reading a scatterplot matrix can be difficult, as it is used to determine *rough* linear correlations. 
 
-```{r heatmap}
-data(iris_data)
-
-#library(reshape2)
-#qplot(x=Var1, y=Var2, data=melt(cor(iris_data[,1:4])), fill=value, geom="tile")
-
-library(reshape2)
-melted_iris <- melt(iris_data)
-head(melted_iris)
-
+```{r hist_SepalLength}
 library(ggplot2)
-#ggplot(data = iris_data[,1:4], aes(x=Var1, y=Var2, fill=value)) + geom_tile()
+ggplot(iris_data, aes(x=Sepal.Length, fill=Species)) + geom_histogram(binwidth = 0.1)
 ```
 
+```{r hist_Sepal_width}
+library(ggplot2)
+ggplot(iris_data, aes(x=Sepal.Width, fill=Species)) + geom_histogram(binwidth = 0.1)
+```
+
+```{r hist_petal_Length}
+library(ggplot2)
+ggplot(iris_data, aes(x=Petal.Length, fill=Species)) + geom_histogram(binwidth = 0.1)
+```
+
+```{r hist_Petal_Width}
+library(ggplot2)
+ggplot(iris_data, aes(x=Petal.Width, fill=Species)) + geom_histogram(binwidth = 0.1)
+```
 
 References:
 

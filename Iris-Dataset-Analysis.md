@@ -212,37 +212,32 @@ However, at times reading a scatterplot matrix can be difficult, as it
 is used to determine *rough* linear correlations.
 
 ``` r
-data(iris_data)
+library(ggplot2)
+ggplot(iris_data, aes(x=Sepal.Length, fill=Species)) + geom_histogram(binwidth = 0.1)
 ```
 
-    ## Warning in data(iris_data): data set 'iris_data' not found
-
-``` r
-#library(reshape2)
-#qplot(x=Var1, y=Var2, data=melt(cor(iris_data[,1:4])), fill=value, geom="tile")
-
-library(reshape2)
-melted_iris <- melt(iris_data)
-```
-
-    ## Using Species as id variables
-
-``` r
-head(melted_iris)
-```
-
-    ##   Species     variable value
-    ## 1  setosa Sepal.Length   5.1
-    ## 2  setosa Sepal.Length   4.9
-    ## 3  setosa Sepal.Length   4.7
-    ## 4  setosa Sepal.Length   4.6
-    ## 5  setosa Sepal.Length   5.0
-    ## 6  setosa Sepal.Length   5.4
+![](Iris-Dataset-Analysis_files/figure-gfm/hist_SepalLength-1.png)<!-- -->
 
 ``` r
 library(ggplot2)
-#ggplot(data = iris_data[,1:4], aes(x=Var1, y=Var2, fill=value)) + geom_tile()
+ggplot(iris_data, aes(x=Sepal.Width, fill=Species)) + geom_histogram(binwidth = 0.1)
 ```
+
+![](Iris-Dataset-Analysis_files/figure-gfm/hist_Sepal_width-1.png)<!-- -->
+
+``` r
+library(ggplot2)
+ggplot(iris_data, aes(x=Petal.Length, fill=Species)) + geom_histogram(binwidth = 0.1)
+```
+
+![](Iris-Dataset-Analysis_files/figure-gfm/hist_petal_Length-1.png)<!-- -->
+
+``` r
+library(ggplot2)
+ggplot(iris_data, aes(x=Petal.Width, fill=Species)) + geom_histogram(binwidth = 0.1)
+```
+
+![](Iris-Dataset-Analysis_files/figure-gfm/hist_Petal_Width-1.png)<!-- -->
 
 References:
 
