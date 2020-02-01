@@ -252,7 +252,7 @@ library(ggplot2)
 ggplot(iris_data, aes(x=Petal.Width, fill=Species)) + geom_histogram(binwidth = 0.1)
 ```
 
-![](figure-gfm/Flowers.png)<!-- -->
+![](Iris-Dataset-Analysis_files/figure-gfm/hist_Petal_Width-1.png)<!-- -->
 
 Once again, Setosa appears to have the lowest petal length, versicolor
 in the middle, and Virginica with the highest petal length.
@@ -262,11 +262,9 @@ insights from this data. For example, the Setosa flower has the smallest
 sepal Length, petal width and petal length. Without an image as
 reference, and no prior knowledge about flowers, this data helps us to
 create an image where the Setosa flower species has small petals but a
-wide
-sepal.
+wide sepal.
 
-![](Iris-Dataset-Analysis_files/figure-gfm/Flowers.png)
-References:
+![](Iris-Dataset-Analysis_files/figure-gfm/Flowers.png) References:
 
 <https://www.r-bloggers.com/scatterplot-matrices/>
 \#<https://www.littlemissdata.com/blog/simple-eda>
