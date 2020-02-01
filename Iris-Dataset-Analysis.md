@@ -218,12 +218,23 @@ ggplot(iris_data, aes(x=Sepal.Length, fill=Species)) + geom_histogram(binwidth =
 
 ![](Iris-Dataset-Analysis_files/figure-gfm/hist_SepalLength-1.png)<!-- -->
 
+This histogram shows the Sepal length of all the different species of
+flowers in the dataset. The different colors represent the different
+species. This makes it easier to identify the differences in length
+between the different species. For example, Setosa flowers have the
+lowest average sepal length, Virginica flowers have the highest average
+sepal length, and Versicolor flowers sitting in the middle.
+
 ``` r
 library(ggplot2)
 ggplot(iris_data, aes(x=Sepal.Width, fill=Species)) + geom_histogram(binwidth = 0.1)
 ```
 
 ![](Iris-Dataset-Analysis_files/figure-gfm/hist_Sepal_width-1.png)<!-- -->
+
+This histogram shows that there isn’t much difference in sepal width
+between Virginica and Versicolor flowers, however Setosa flowers tend to
+have the highest width.
 
 ``` r
 library(ggplot2)
@@ -232,6 +243,10 @@ ggplot(iris_data, aes(x=Petal.Length, fill=Species)) + geom_histogram(binwidth =
 
 ![](Iris-Dataset-Analysis_files/figure-gfm/hist_petal_Length-1.png)<!-- -->
 
+There is a clear distinction between petal lengths of the three
+different flower species. Setosa has the lowest petal length, with
+versicolor sitting in the middle, and Virginica having the highest.
+
 ``` r
 library(ggplot2)
 ggplot(iris_data, aes(x=Petal.Width, fill=Species)) + geom_histogram(binwidth = 0.1)
@@ -239,6 +254,18 @@ ggplot(iris_data, aes(x=Petal.Width, fill=Species)) + geom_histogram(binwidth = 
 
 ![](Iris-Dataset-Analysis_files/figure-gfm/hist_Petal_Width-1.png)<!-- -->
 
+Once again, Setosa appears to have the lowest petal length, versicolor
+in the middle, and Virginica with the highest petal length.
+
+Although this all seems very obvious initially, we are able to draw
+insights from this data. For example, the Setosa flower has the smallest
+sepal Length, petal width and petal length. Without an image as
+reference, and no prior knowledge about flowers, this data helps us to
+create an image where the Setosa flower species has small petals but a
+wide
+sepal.
+
+![Setosa](/Users/cmlach/Documents/Beginner_Repo/Beginner_Repo/Iris-Dataset-Analysis_files/figure-gfm)
 References:
 
 <https://www.r-bloggers.com/scatterplot-matrices/>
