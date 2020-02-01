@@ -142,7 +142,7 @@ Although this all seems very obvious initially, we are able to draw insights fro
 
 ![](Iris-Dataset-Analysis_files/figure-gfm/Flowers.png)
 References:
-
+[Flower image reference: https://annhubhelp.anscenter.com/lib/NewItem167.png]
 https://www.r-bloggers.com/scatterplot-matrices/
 #https://www.littlemissdata.com/blog/simple-eda
 #https://medium.com/@rishav.jnit/exploratory-data-analysis-eda-on-iris-dataset-using-python-cadd850c1fc6
