@@ -265,7 +265,7 @@ create an image where the Setosa flower species has small petals but a
 wide
 sepal.
 
-![](/Users/cmlach/Documents/Beginner_Repo/Beginner_Repo/Iris-Dataset-Analysis_files/figure-gfm/Flowers.png)
+![](Iris-Dataset-Analysis_files/figure-gfm/Flowers.png)
 References:
 
 <https://www.r-bloggers.com/scatterplot-matrices/>
