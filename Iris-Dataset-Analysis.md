@@ -252,7 +252,7 @@ library(ggplot2)
 ggplot(iris_data, aes(x=Petal.Width, fill=Species)) + geom_histogram(binwidth = 0.1)
 ```
 
-![](Iris-Dataset-Analysis_files/figure-gfm/hist_Petal_Width-1.png)<!-- -->
+![](figure-gfm/Flowers.png)<!-- -->
 
 Once again, Setosa appears to have the lowest petal length, versicolor
 in the middle, and Virginica with the highest petal length.
