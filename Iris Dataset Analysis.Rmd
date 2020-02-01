@@ -140,7 +140,7 @@ Once again, Setosa appears to have the lowest petal length, versicolor in the mi
 
 Although this all seems very obvious initially, we are able to draw insights from this data. For example, the Setosa flower has the smallest sepal Length, petal width and petal length. Without an image as reference, and no prior knowledge about flowers, this data helps us to create an image where the Setosa flower species has small petals but a wide sepal. 
 
-![Setosa](/Users/cmlach/Documents/Beginner_Repo/Beginner_Repo/Iris-Dataset-Analysis_files/figure-gfm/Flowers.png)
+![](/Users/cmlach/Documents/Beginner_Repo/Beginner_Repo/Iris-Dataset-Analysis_files/figure-gfm/Flowers.png)
 References:
 
 https://www.r-bloggers.com/scatterplot-matrices/
