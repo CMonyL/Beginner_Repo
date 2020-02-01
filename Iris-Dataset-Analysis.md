@@ -264,8 +264,15 @@ reference, and no prior knowledge about flowers, this data helps us to
 create an image where the Setosa flower species has small petals but a
 wide sepal.
 
-![](Iris-Dataset-Analysis_files/figure-gfm/Flowers.png) References:
+![Flowers](Iris-Dataset-Analysis_files/figure-gfm/Flowers.png) Based on
+previous predictions using the data from the histogram. It appears that
+we are correct. The petals appear to be very small, and the sepals
+appear to be somewhat short compared to the Virginica vlower and the
+Versicolor flower, but the sepals are the widest. This image backs up
+our prediction based on the visualised data.
 
+References: \[Flower image reference:
+<https://annhubhelp.anscenter.com/lib/NewItem167.png>\]
 <https://www.r-bloggers.com/scatterplot-matrices/>
 \#<https://www.littlemissdata.com/blog/simple-eda>
 \#<https://medium.com/@rishav.jnit/exploratory-data-analysis-eda-on-iris-dataset-using-python-cadd850c1fc6>
