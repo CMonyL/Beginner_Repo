@@ -9,6 +9,14 @@ output: rmarkdown::github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+To Do:
+
+[Currently Incomplete]
+* Talk about Limitations of different plots
+* Consider PDF and CDF discussion
+* Define statistical topics e.g. Mean, Variance, Standard Deviation, Quantiles. (Consider linking to different page?)
+* FORMATTING AND CLARITY
+
 ## The beginning
 Hello World!
 

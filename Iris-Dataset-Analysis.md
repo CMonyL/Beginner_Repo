@@ -3,6 +3,13 @@ Iris Dataset analysis
 Chan Mony Lach
 29/01/2020
 
+To Do:
+
+\[Currently Incomplete\] \* Talk about Limitations of different plots \*
+Consider PDF and CDF discussion \* Define statistical topics e.g. Mean,
+Variance, Standard Deviation, Quantiles. (Consider linking to different
+page?) \* FORMATTING AND CLARITY
+
 ## The beginning
 
 Hello World\!
@@ -263,8 +270,9 @@ p <- plot_grid(scatter_pet, hist_pet)
 save_plot("petal scat v hist.png", p, ncol = 2)
 ```
 
-  - Setosa flower is easily distinguished as their is no overlap between
-    the other species.
+![](Iris-Dataset-Analysis_files/figure-gfm/petal%20scat%20v%20hist.png)
+\* Setosa flower is easily distinguished as their is no overlap between
+the other species.
 
   - Versicolor and Virginica flowers are more easily distinguished as
     there is significantly less overlap.
