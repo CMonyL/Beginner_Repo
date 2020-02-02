@@ -146,7 +146,7 @@ p <- plot_grid(scatter_sep, hist_sep)
 save_plot("plot.png", p, ncol = 2)
 #detach(iris_data)
 ```
-
+![](Iris-Dataset-Analysis_files/figure-gfm/sepal scat v hist.png)
 
 ### 2D Scatterplot for Petal Length and Petal Width
 
