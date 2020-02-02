@@ -271,8 +271,10 @@ appear to be somewhat short compared to the Virginica vlower and the
 Versicolor flower, but the sepals are the widest. This image backs up
 our prediction based on the visualised data.
 
-References: \[Flower image reference:
-<https://annhubhelp.anscenter.com/lib/NewItem167.png>\]
-<https://www.r-bloggers.com/scatterplot-matrices/>
-\#<https://www.littlemissdata.com/blog/simple-eda>
-\#<https://medium.com/@rishav.jnit/exploratory-data-analysis-eda-on-iris-dataset-using-python-cadd850c1fc6>
+References:
+
+  - \[Flower image reference:
+    <https://annhubhelp.anscenter.com/lib/NewItem167.png>\]
+  - <https://www.r-bloggers.com/scatterplot-matrices/>
+  - <https://www.littlemissdata.com/blog/simple-eda>
+  - <https://medium.com/@rishav.jnit/exploratory-data-analysis-eda-on-iris-dataset-using-python-cadd850c1fc6>
