@@ -230,11 +230,79 @@ average length. However, it is more difficult to identify a Versicolor
 and/or Virginica Flower as the lengths are not easily
 distinguished.
 
+### 2D Scatterplot for Sepal Length and Sepal Width
+
 ``` r
 qplot(Sepal.Length, Sepal.Width, data=iris_data, colour = Species)
 ```
 
 ![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+  - Setosa points (RED) can be distinguished from other species by using
+    sepal length and sepal width as features.
+
+  - Versicolor (GREEN) and Virginica (BLUE) cannot be easily
+    distinguished as there is considerable overlap between the points.
+
+<!-- end list -->
+
+``` r
+#Histogram v Scatterplot
+#install.packages("cowplot")
+library(cowplot)
+```
+
+    ## 
+    ## ********************************************************
+
+    ## Note: As of version 1.0.0, cowplot does not change the
+
+    ##   default ggplot2 theme anymore. To recover the previous
+
+    ##   behavior, execute:
+    ##   theme_set(theme_cowplot())
+
+    ## ********************************************************
+
+``` r
+#attach(iris_data)
+#par(mfrow=c(1,2))
+scatter_sep<- ggplot2::qplot(Sepal.Length, Sepal.Width, data=iris_data, colour = Species)
+hist_sep <- ggplot2::ggplot(iris, aes(x=Sepal.Length, fill=Species)) + geom_histogram(binwidth = 0.1)
+plot_grid(scatter_sep, hist_sep)
+```
+
+![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+``` r
+#detach(iris_data)
+```
+
+### 2D Scatterplot for Petal Length and Petal Width
+
+``` r
+qplot(Petal.Length, Petal.Width, data=iris_data, colour = Species)
+```
+
+![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+  - Setosa flower is easily distinguished as their is no overlap between
+    the other species.
+
+  - Versicolor and Virginica flowers are more easily distinguished as
+    there is significantly less overlap.
+
+  - Compared to the sepal plot, this petal plot is more effective at
+    distinguishing the different flower species.
+
+## Conclusion
+
+Using different plots can help to visualise your data much more
+effectively. This is shown above, as the histogram is much more
+horizontally clustered and there is visual overlap, which may hide
+important data points. By utilizing the scatterplot and the different
+features (Sepal Length v Sepal Width, Petal Length v Petal Width), the
+different species can be easily distinguished.
 
 ``` r
 library(ggplot2)
