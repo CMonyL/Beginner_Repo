@@ -161,11 +161,6 @@ library.
 ``` r
 #install.packages("devtools")
 library(devtools)
-```
-
-    ## Loading required package: usethis
-
-``` r
 #devtools::install_github("ropensci/visdat")
 library(visdat)
 vis_miss(iris_data)
@@ -250,21 +245,6 @@ qplot(Sepal.Length, Sepal.Width, data=iris_data, colour = Species)
 #Histogram v Scatterplot
 #install.packages("cowplot")
 library(cowplot)
-```
-
-    ## 
-    ## ********************************************************
-
-    ## Note: As of version 1.0.0, cowplot does not change the
-
-    ##   default ggplot2 theme anymore. To recover the previous
-
-    ##   behavior, execute:
-    ##   theme_set(theme_cowplot())
-
-    ## ********************************************************
-
-``` r
 scatter_sep<- ggplot2::qplot(Sepal.Length, Sepal.Width, data=iris_data, colour = Species)
 hist_sep <- ggplot2::ggplot(iris, aes(x=Sepal.Length, fill=Species)) + geom_histogram(binwidth = 0.1)
 p <- plot_grid(scatter_sep, hist_sep)
@@ -276,10 +256,12 @@ save_plot("sepal scat v hist.png", p, ncol = 2)
 ### 2D Scatterplot for Petal Length and Petal Width
 
 ``` r
-qplot(Petal.Length, Petal.Width, data=iris_data, colour = Species)
+library(cowplot)
+scatter_pet<- ggplot2::qplot(Petal.Length, Petal.Width, data=iris_data, colour = Species)
+hist_pet <- ggplot2::ggplot(iris, aes(x=Petal.Length, fill=Species)) + geom_histogram(binwidth = 0.1)
+p <- plot_grid(scatter_pet, hist_pet)
+save_plot("petal scat v hist.png", p, ncol = 2)
 ```
-
-![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
   - Setosa flower is easily distinguished as their is no overlap between
     the other species.

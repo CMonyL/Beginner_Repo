@@ -85,7 +85,7 @@ skim(iris_data)
 
 
 Suggested by Indrajeet Patil, who also created ggstatsplot2, you can visualise your dataset as well as display missing data by using the vis_miss() function, and vis_dat() function by utilizing the visdat library.
-```{r warning=FALSE, message = FALSE}
+```{r, warning=FALSE, message = FALSE}
 #install.packages("devtools")
 library(devtools)
 #devtools::install_github("ropensci/visdat")
@@ -118,7 +118,7 @@ pairs(~Sepal.Length+Sepal.Width+Petal.Length+Sepal.Width,data=iris_data, main="I
 The scatterplot matrix shows that the Sepal Length and Petal Length are highly correlated. In other words, if the Sepal Length of the flower is long, the petal length is expected to be long as well and vice versa. 
 
 
-```{r hist_SepalLength warning=FALSE, message = FALSE}
+```{r hist_SepalLength, warning=FALSE, message = FALSE}
 library(ggplot2)
 ggplot(iris_data, aes(x=Sepal.Length, fill=Species)) + geom_histogram(binwidth = 0.1)
 ```
@@ -134,7 +134,7 @@ qplot(Sepal.Length, Sepal.Width, data=iris_data, colour = Species)
 
 * Versicolor (GREEN) and Virginica (BLUE) cannot be easily distinguished as there is considerable overlap between the points.
 
-```{r warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE}
 #Histogram v Scatterplot
 #install.packages("cowplot")
 library(cowplot)
@@ -148,9 +148,13 @@ save_plot("sepal scat v hist.png", p, ncol = 2)
 ### 2D Scatterplot for Petal Length and Petal Width
 
 ```{r}
-qplot(Petal.Length, Petal.Width, data=iris_data, colour = Species)
+library(cowplot)
+scatter_pet<- ggplot2::qplot(Petal.Length, Petal.Width, data=iris_data, colour = Species)
+hist_pet <- ggplot2::ggplot(iris, aes(x=Petal.Length, fill=Species)) + geom_histogram(binwidth = 0.1)
+p <- plot_grid(scatter_pet, hist_pet)
+save_plot("petal scat v hist.png", p, ncol = 2)
 ```
-
+![](Iris-Dataset-Analysis_files/figure-gfm/petal scat v hist.png)
 * Setosa flower is easily distinguished as their is no overlap between the other species. 
 
 * Versicolor and Virginica flowers are more easily distinguished as there is significantly less overlap. 
