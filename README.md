@@ -6,6 +6,7 @@ The objective of this git is to demonstrate my understanding of various Data Sci
 The projects found in this repo will which projects I used as my starting points in Data Science, and hopefully as I continue to develop my skills, I can look back to see how much I've grown. 
 
 Plans:
-Iris Dataset Exploratory Data Analysis (EDA)
+
+In Progress: Iris Dataset Exploratory Data Analysis (EDA)
 
 mtcars EDA
