@@ -77,7 +77,7 @@ is.null(iris_data)
 ```
 
 There is also the skim function, found in the *skimr package* that will scan your entire dataset and summarise, check for null values and more!
-```{r}
+```{r message = FALSE, warning = FALSE}
 #install.packages("skimr)
 library(skimr)
 skim(iris_data)
@@ -85,7 +85,7 @@ skim(iris_data)
 
 
 Suggested by Indrajeet Patil, who also created ggstatsplot2, you can visualise your dataset as well as display missing data by using the vis_miss() function, and vis_dat() function by utilizing the visdat library.
-```{r}
+```{r warning=FALSE, message = FALSE}
 #install.packages("devtools")
 library(devtools)
 #devtools::install_github("ropensci/visdat")
@@ -118,7 +118,7 @@ pairs(~Sepal.Length+Sepal.Width+Petal.Length+Sepal.Width,data=iris_data, main="I
 The scatterplot matrix shows that the Sepal Length and Petal Length are highly correlated. In other words, if the Sepal Length of the flower is long, the petal length is expected to be long as well and vice versa. 
 
 
-```{r hist_SepalLength}
+```{r hist_SepalLength warning=FALSE, message = FALSE}
 library(ggplot2)
 ggplot(iris_data, aes(x=Sepal.Length, fill=Species)) + geom_histogram(binwidth = 0.1)
 ```
@@ -134,17 +134,14 @@ qplot(Sepal.Length, Sepal.Width, data=iris_data, colour = Species)
 
 * Versicolor (GREEN) and Virginica (BLUE) cannot be easily distinguished as there is considerable overlap between the points.
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 #Histogram v Scatterplot
 #install.packages("cowplot")
 library(cowplot)
-#attach(iris_data)
-#par(mfrow=c(1,2))
 scatter_sep<- ggplot2::qplot(Sepal.Length, Sepal.Width, data=iris_data, colour = Species)
 hist_sep <- ggplot2::ggplot(iris, aes(x=Sepal.Length, fill=Species)) + geom_histogram(binwidth = 0.1)
 p <- plot_grid(scatter_sep, hist_sep)
-save_plot("plot.png", p, ncol = 2)
-#detach(iris_data)
+save_plot("sepal scat v hist.png", p, ncol = 2)
 ```
 ![](Iris-Dataset-Analysis_files/figure-gfm/sepal scat v hist.png)
 

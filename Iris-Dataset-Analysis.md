@@ -265,18 +265,13 @@ library(cowplot)
     ## ********************************************************
 
 ``` r
-#attach(iris_data)
-#par(mfrow=c(1,2))
 scatter_sep<- ggplot2::qplot(Sepal.Length, Sepal.Width, data=iris_data, colour = Species)
 hist_sep <- ggplot2::ggplot(iris, aes(x=Sepal.Length, fill=Species)) + geom_histogram(binwidth = 0.1)
-plot_grid(scatter_sep, hist_sep)
+p <- plot_grid(scatter_sep, hist_sep)
+save_plot("sepal scat v hist.png", p, ncol = 2)
 ```
 
-![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
-
-``` r
-#detach(iris_data)
-```
+![](Iris-Dataset-Analysis_files/figure-gfm/sepal%20scat%20v%20hist.png)
 
 ### 2D Scatterplot for Petal Length and Petal Width
 
