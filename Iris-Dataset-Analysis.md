@@ -171,7 +171,7 @@ library(visdat)
 vis_miss(iris_data)
 ```
 
-![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 This output shows that there are no missing entries in the dataset. This
 visualisation should look a little different as we explore more
 unstructured/semi-structured
@@ -181,12 +181,17 @@ datasets.
 vis_dat(iris_data)
 ```
 
-![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 This vis\_dat output shows you a ggplot object of what is inside the
 dataframe. Cells are colored according to what class they are and
 whether the values are missing. Being a ggplot object, you can customise
 the plot and/or change the labels if needed.
+
+## Conclusion
+
+There is no missing data, or NULL entries in this dataset as shown in
+the methods utilized above.
 
 Now that we’ve checked to make sure that the dataset is cleaned and
 ready to use, lets do some visualisations.
@@ -204,12 +209,10 @@ pairs(~Sepal.Length+Sepal.Width+Petal.Length+Sepal.Width,data=iris_data, main="I
 ```
 
 ![](Iris-Dataset-Analysis_files/figure-gfm/scatterplot-1.png)<!-- -->
-The scatterplot matrix shows that the Sepal Length and Petal Length are
-highly correlated. In other words, if the Sepal Length of the flower is
-long, we can expect the petal length to be long as well, and vice versa.
-
-However, at times reading a scatterplot matrix can be difficult, as it
-is used to determine *rough* linear correlations.
+\#\# Conclusion The scatterplot matrix shows that the Sepal Length and
+Petal Length are highly correlated. In other words, if the Sepal Length
+of the flower is long, the petal length is expected to be long as well
+and vice versa.
 
 ``` r
 library(ggplot2)
@@ -221,9 +224,17 @@ ggplot(iris_data, aes(x=Sepal.Length, fill=Species)) + geom_histogram(binwidth =
 This histogram shows the Sepal length of all the different species of
 flowers in the dataset. The different colors represent the different
 species. This makes it easier to identify the differences in length
-between the different species. For example, Setosa flowers have the
-lowest average sepal length, Virginica flowers have the highest average
-sepal length, and Versicolor flowers sitting in the middle.
+between the different species. Using the Sepal length as a feature, we
+have an easier time identifying a Setosa flower, as it has the shortest
+average length. However, it is more difficult to identify a Versicolor
+and/or Virginica Flower as the lengths are not easily
+distinguished.
+
+``` r
+qplot(Sepal.Length, Sepal.Width, data=iris_data, colour = Species)
+```
+
+![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 ``` r
 library(ggplot2)

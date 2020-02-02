@@ -35,6 +35,9 @@ The dim() function wil describe the dimensions of the iris dataset (or "iris_dat
 ```{r head_iris}
 iris_data <- iris
 head(iris_data)
+```
+
+```{r}
 dim(iris_data)
 ```
 
@@ -112,16 +115,22 @@ By using the pairs() function from the ggplot package, we are able to create a s
 pairs(~Sepal.Length+Sepal.Width+Petal.Length+Sepal.Width,data=iris_data, main="Iris Scatterplot Matrix")
 ```
 ## Conclusion
-The scatterplot matrix shows that the Sepal Length and Petal Length are highly correlated. In other words, if the Sepal Length of the flower is long, we can expect the petal length to be long as well, and vice versa. 
+The scatterplot matrix shows that the Sepal Length and Petal Length are highly correlated. In other words, if the Sepal Length of the flower is long, the petal length is expected to be long as well and vice versa. 
 
-However, at times reading a scatterplot matrix can be difficult, as it is used to determine *rough* linear correlations. 
 
 ```{r hist_SepalLength}
 library(ggplot2)
 ggplot(iris_data, aes(x=Sepal.Length, fill=Species)) + geom_histogram(binwidth = 0.1)
 ```
 
-This histogram shows the Sepal length of all the different species of flowers in the dataset. The different colors represent the different species. This makes it easier to identify the differences in length between the different species. For example, Setosa flowers have the lowest average sepal length, Virginica flowers have the highest average sepal length, and Versicolor flowers sitting in the middle.
+This histogram shows the Sepal length of all the different species of flowers in the dataset. The different colors represent the different species. This makes it easier to identify the differences in length between the different species. Using the Sepal length as a feature, we have an easier time identifying a Setosa flower, as it has the shortest average length. However, it is more difficult to identify a Versicolor and/or Virginica Flower as the lengths are not easily distinguished. 
+
+```{r}
+qplot(Sepal.Length, Sepal.Width, data=iris_data, colour = Species)
+```
+
+
+
 
 ```{r hist_Sepal_width}
 library(ggplot2)
