@@ -1,22 +1,24 @@
 Iris Dataset analysis
 ================
 Chan Mony Lach
-29/01/2020
 
 To Do:
 
-\[Currently Incomplete\] \* Talk about Limitations of different plots \*
-Consider PDF and CDF discussion \* Define statistical topics e.g. Mean,
-Variance, Standard Deviation, Quantiles. (Consider linking to different
-page?) \* FORMATTING AND CLARITY
+\[Currently Incomplete\]
 
-## The beginning
+  - Talk about Limitations of different plots
+  - Consider PDF and CDF discussion
+  - Define statistical topics e.g. Mean, Variance, Standard Deviation,
+    Quantiles. (Consider linking to different page?)
+  - FORMATTING AND CLARITY
+
+## The IRIS dataset
 
 Hello World\!
 
-I am far from being experienced in data science, therefore I figured I
-should start with one of the most common datasets in the world; the
-*IRIS* dataset.
+I am far from being experienced in data science, therefore I should
+start with one of the most common datasets in the world; the **IRIS**
+dataset.
 
 This dataset is was commonly referred to in throughout my university
 courses as a means to introduce various machine learning/statistical
@@ -27,24 +29,35 @@ suitable candidate for a beginner Exploratory Data Analysis (EDA).
 
 The dataset describes three classes of flowers:
 
-  - Setosa
-  - Versicolor
-  - Virginica
+  - **Setosa**
+  - **Versicolor**
+  - **Virginica**
 
-As well as their sepal length/width and petal length/width.
+The features used to describe these flowers are:
+
+  - Sepal Length
+  - Sepal Width
+  - Petal Length
+  - Petal Width
+
+Each flower has their own unique Sepal lengths/widths and Petal
+lengths/widths.
+
+### Assignment objects
 
 The first line of code will assign the iris dataset to an object called
 “iris\_data”. This will allow for more functions to be applied to the
 object at a later stage of this EDA.
 
-The head() function will display the first 5 rows of the dataset.
-
-The dim() function wil describe the dimensions of the iris dataset (or
-“iris\_data” object). The function shows that there are 150 rows of
-data with 5 headings.
-
 ``` r
 iris_data <- iris
+```
+
+### Preview the dataset
+
+The `head()` function will display the first 5 rows of the dataset.
+
+``` r
 head(iris_data)
 ```
 
@@ -56,17 +69,26 @@ head(iris_data)
     ## 5          5.0         3.6          1.4         0.2  setosa
     ## 6          5.4         3.9          1.7         0.4  setosa
 
+The `dim()` function wil describe the dimensions of the iris dataset (or
+“iris\_data” object). The function shows that there are 150 rows of data
+with 5 headings.
+
 ``` r
 dim(iris_data)
 ```
 
     ## [1] 150   5
 
-By referring to the previous head() function, we can see that the 5
-headings are: \* Sepal.Length \* Sepal.Width \* Petal.Length \*
-Petal.Width \* Species
+Referring to the previous `head()` function, we can see that the 5
+headings are:
 
-The summary() function allows us to see summary statistics of the
+  - Sepal.Length
+  - Sepal.Width
+  - Petal.Length
+  - Petal.Width
+  - Species
+
+The `summary()` function allows us to see summary statistics of the
 dataset.
 
 ``` r
@@ -92,8 +114,8 @@ Interestingly enough, it also shows the unique values of each flower,
 and their occurences in the dataset which is seeen in the “species”
 column.
 
-A useful function to see the *type* of data in the dataset is sapply().
-e.g. sapply(data, typeof)
+A useful function to see the **type** of data in the dataset is
+`sapply()`. e.g. `sapply(data, typeof)`
 
 ``` r
 sapply(iris_data, typeof)
@@ -102,17 +124,18 @@ sapply(iris_data, typeof)
     ## Sepal.Length  Sepal.Width Petal.Length  Petal.Width      Species 
     ##     "double"     "double"     "double"     "double"    "integer"
 
-This shows that all the data in this dataset are of type *double*, with
-the exception of species which is *integer*.
+This shows that all the data in this dataset are of type **double**,
+with the exception of species which is **integer**.
 
 My understanding is that in the *real world*, datasets are not always
-going to be clean, and some entries may have null values. The *is.null*
-function can be used to check if the object contains null values.
+going to be clean, and some entries may have null or incorrect values.
+The`*is.null()` function can be used to check if the object contains
+null values.
 
-If the output is *TRUE*, then our dataset does contain NULL values, and
+If the output is `TRUE`, then our dataset does contain NULL values, and
 therefore we can either choose to omit them from our analysis or do
-something else. However, if the output is *FALSE*, then our dataset
-*DOES NOT* contain null values (which is a good thing\!).
+something else. However, if the output is `FALSE`, then our dataset
+*DOES NOT* contain null values (**which is a good thing\!**).
 
 ``` r
 is.null(iris_data)
@@ -173,7 +196,7 @@ library(visdat)
 vis_miss(iris_data)
 ```
 
-![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 This output shows that there are no missing entries in the dataset. This
 visualisation should look a little different as we explore more
 unstructured/semi-structured
@@ -183,7 +206,7 @@ datasets.
 vis_dat(iris_data)
 ```
 
-![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 This vis\_dat output shows you a ggplot object of what is inside the
 dataframe. Cells are colored according to what class they are and
@@ -238,7 +261,7 @@ distinguished.
 qplot(Sepal.Length, Sepal.Width, data=iris_data, colour = Species)
 ```
 
-![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
   - Setosa points (RED) can be distinguished from other species by using
     sepal length and sepal width as features.

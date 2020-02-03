@@ -1,8 +1,9 @@
 ---
 title: "Iris Dataset analysis"
 author: "Chan Mony Lach"
-date: "29/01/2020"
-output: rmarkdown::github_document
+output: 
+        rmarkdown::github_document:
+                toc: TRUE
 ---
 
 ```{r setup, include=FALSE}
@@ -12,15 +13,16 @@ knitr::opts_chunk$set(echo = TRUE)
 To Do:
 
 [Currently Incomplete]
+
 * Talk about Limitations of different plots
 * Consider PDF and CDF discussion
 * Define statistical topics e.g. Mean, Variance, Standard Deviation, Quantiles. (Consider linking to different page?)
 * FORMATTING AND CLARITY
 
-## The beginning
+## The IRIS dataset
 Hello World!
 
-I am far from being experienced in data science, therefore I figured I should start with one of the most common datasets in the world; the *IRIS* dataset.
+I am far from being experienced in data science, therefore I should start with one of the most common datasets in the world; the **IRIS** dataset.
 
 This dataset is was commonly referred to in throughout my university courses as a means to introduce various machine learning/statistical concepts. 
 
@@ -28,63 +30,76 @@ Fortunately this dataset is already built into R, which makes it a suitable cand
 
 The dataset describes three classes of flowers:
 
- * Setosa
- * Versicolor
- * Virginica
+ * **Setosa**
+ * **Versicolor**
+ * **Virginica**
 
-As well as their sepal length/width and petal length/width. 
+The features used to describe these flowers are: 
+
+* Sepal Length
+* Sepal Width
+* Petal Length
+* Petal Width
+
+Each flower has their own unique Sepal lengths/widths and Petal lengths/widths.
+
+### Assignment objects
 
 The first line of code will assign the iris dataset to an object called "iris_data". This will allow for more functions to be applied to the object at a later stage of this EDA. 
+```{r load data}
+iris_data <- iris
+```
 
-The head() function will display the first 5 rows of the dataset. 
 
-The dim() function wil describe the dimensions of the iris dataset (or "iris_data" object). The function shows that there are 150 rows of data with 5 headings. 
+### Preview the dataset
+The `head()` function will display the first 5 rows of the dataset. 
 
 ```{r head_iris}
-iris_data <- iris
 head(iris_data)
 ```
 
-```{r}
+The `dim()` function wil describe the dimensions of the iris dataset (or "iris_data" object). The function shows that there are 150 rows of data with 5 headings. 
+
+```{r dim}
 dim(iris_data)
 ```
 
-By referring to the previous head() function, we can see that the 5 headings are: 
+Referring to the previous `head()` function, we can see that the 5 headings are: 
+
  * Sepal.Length
  * Sepal.Width
  * Petal.Length
  * Petal.Width
  * Species
 
-The summary() function allows us to see summary statistics of the dataset. 
+The `summary()` function allows us to see summary statistics of the dataset. 
+
 ```{r summary_iris}
 summary(iris_data)
 ```
 
 Interestingly enough, it also shows the unique values of each flower, and their occurences in the dataset which is seeen in the "species" column.
 
+A useful function to see the **type** of data in the dataset is `sapply()`.
+e.g. `sapply(data, typeof)`
 
-
-A useful function to see the *type* of data in the dataset is sapply().
-e.g. sapply(data, typeof)
-
-```{r}
+```{r sapply}
 sapply(iris_data, typeof)
 ```
 
-This shows that all the data in this dataset are of type *double*, with the exception of species which is *integer*.
+This shows that all the data in this dataset are of type **double**, with the exception of species which is **integer**.
 
-My understanding is that in the *real world*, datasets are not always going to be clean, and some entries may have null values. 
-The *is.null* function can be used to check if the object contains null values. 
+My understanding is that in the *real world*, datasets are not always going to be clean, and some entries may have null or incorrect values. 
+The`*is.null()` function can be used to check if the object contains null values. 
 
-If the output is *TRUE*, then our dataset does contain NULL values, and therefore we can either choose to omit them from our analysis or do something else. However, if the output is *FALSE*, then our dataset *DOES NOT* contain null values (which is a good thing!). 
+If the output is `TRUE`, then our dataset does contain NULL values, and therefore we can either choose to omit them from our analysis or do something else. However, if the output is `FALSE`, then our dataset *DOES NOT* contain null values (**which is a good thing!**). 
 
 ```{r}
 is.null(iris_data)
 
 ```
 
-There is also the skim function, found in the *skimr package* that will scan your entire dataset and summarise, check for null values and more!
+There is also the `skim()` function, found in the **skimr package** that will scan your entire dataset and summarise, check for null values and more!
 ```{r message = FALSE, warning = FALSE}
 #install.packages("skimr)
 library(skimr)
@@ -92,7 +107,7 @@ skim(iris_data)
 ```
 
 
-Suggested by Indrajeet Patil, who also created ggstatsplot2, you can visualise your dataset as well as display missing data by using the vis_miss() function, and vis_dat() function by utilizing the visdat library.
+Suggested by Indrajeet Patil, who also created **ggstatsplot2**, you can visualise your dataset as well as display missing data by using the `vis_miss()` function, and `vis_dat()` function by utilizing the visdat library.
 ```{r, warning=FALSE, message = FALSE}
 #install.packages("devtools")
 library(devtools)
@@ -100,32 +115,33 @@ library(devtools)
 library(visdat)
 vis_miss(iris_data)
 ```
-This output shows that there are no missing entries in the dataset. This visualisation should look a little different as we explore more unstructured/semi-structured datasets.
+This output shows that there are **no missing entries** in the dataset. This visualisation should look a little different as we explore more unstructured/semi-structured datasets later on.
 ```{r}
 vis_dat(iris_data)
 ```
 
-This vis_dat  output shows you a ggplot object of what is inside the dataframe. Cells are colored according to what class they are and whether the values are missing. Being a ggplot object, you can customise the plot and/or change the labels if needed. 
+This `vis_dat()` output shows you a ggplot object of what is inside the dataframe. Cells are colored according to what class they are and whether the values are missing. Being a ggplot object, you can customise the plot and/or change the labels if needed. 
 
 ## Conclusion
 There is no missing data, or NULL entries in this dataset as shown in the methods utilized above. 
 
+## Visualisations
 
 Now that we've checked to make sure that the dataset is cleaned and ready to use, lets do some visualisations.
 
 Scatterplots are a great way to determine if there is a linear correlation between different variables in your dataset. 
 
-By using the pairs() function from the ggplot package, we are able to create a scatterplot matrix.
+By using the `pairs()` function from the ggplot package, we are able to create a scatterplot matrix.
 
 ```{r scatterplot}
 #install.packages("ggplot2")
 #library(ggplot2)
 pairs(~Sepal.Length+Sepal.Width+Petal.Length+Sepal.Width,data=iris_data, main="Iris Scatterplot Matrix")
 ```
-## Conclusion
-The scatterplot matrix shows that the Sepal Length and Petal Length are highly correlated. In other words, if the Sepal Length of the flower is long, the petal length is expected to be long as well and vice versa. 
+### Conclusion
+The scatterplot matrix shows that the Sepal Length and Petal Length are highly correlated. In other words, if the Sepal Length of the flower is long, the petal length is expected to be long as well and vice versa. We also see that there is some positive correlation between *Petal Length* and *Sepal Length*. However it is not as strong as the Sepal Length and Petal Length correlation. 
 
-
+### Histograms
 ```{r hist_SepalLength, warning=FALSE, message = FALSE}
 library(ggplot2)
 ggplot(iris_data, aes(x=Sepal.Length, fill=Species)) + geom_histogram(binwidth = 0.1)
@@ -141,6 +157,12 @@ qplot(Sepal.Length, Sepal.Width, data=iris_data, colour = Species)
 * Setosa points (RED) can be distinguished from other species by using sepal length and sepal width as features.
 
 * Versicolor (GREEN) and Virginica (BLUE) cannot be easily distinguished as there is considerable overlap between the points.
+
+The scatterplot produced here also reflects the visualisation presented by the histogram. However I find that the scatterplot is much easier to understand compared to the histogram. The points are isolated and there is little overlap between them. This makes it easier to distinguish different points. The colors also help visually identify the class that each point belongs to. 
+
+## Histogram vs Scatterplot
+
+One of the challenges when it comes to visualising data, is selecting the right plot to present. Each plot has it's own advantages and disadvantages and therefore it is crucial to select the right one to tell your story. 
 
 ```{r, warning=FALSE, message=FALSE}
 #Histogram v Scatterplot
