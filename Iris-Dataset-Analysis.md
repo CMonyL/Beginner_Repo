@@ -6,7 +6,6 @@ To Do:
 
 \[Currently Incomplete\]
 
-  - Talk about Limitations of different plots
   - Consider PDF and CDF discussion
   - Define statistical topics e.g. Mean, Variance, Standard Deviation,
     Quantiles. (Consider linking to different page?)
@@ -143,8 +142,9 @@ is.null(iris_data)
 
     ## [1] FALSE
 
-There is also the skim function, found in the *skimr package* that will
-scan your entire dataset and summarise, check for null values and more\!
+There is also the `skim()` function, found in the **skimr package** that
+will scan your entire dataset and summarise, check for null values and
+more\!
 
 ``` r
 #install.packages("skimr)
@@ -183,9 +183,9 @@ numeric**
 | Petal.Length   |          0 |              1 | 3.76 | 1.77 | 1.0 | 1.6 | 4.35 | 5.1 |  6.9 | ▇▁▆▇▂ |
 | Petal.Width    |          0 |              1 | 1.20 | 0.76 | 0.1 | 0.3 | 1.30 | 1.8 |  2.5 | ▇▁▇▅▃ |
 
-Suggested by Indrajeet Patil, who also created ggstatsplot2, you can
+Suggested by Indrajeet Patil, who also created **ggstatsplot2**, you can
 visualise your dataset as well as display missing data by using the
-vis\_miss() function, and vis\_dat() function by utilizing the visdat
+`vis_miss()` function, and `vis_dat()` function by utilizing the visdat
 library.
 
 ``` r
@@ -197,10 +197,10 @@ vis_miss(iris_data)
 ```
 
 ![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
-This output shows that there are no missing entries in the dataset. This
-visualisation should look a little different as we explore more
-unstructured/semi-structured
-datasets.
+This output shows that there are **no missing entries** in the dataset.
+This visualisation should look a little different as we explore more
+unstructured/semi-structured datasets later
+on.
 
 ``` r
 vis_dat(iris_data)
@@ -208,7 +208,7 @@ vis_dat(iris_data)
 
 ![](Iris-Dataset-Analysis_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-This vis\_dat output shows you a ggplot object of what is inside the
+This `vis_dat()` output shows you a ggplot object of what is inside the
 dataframe. Cells are colored according to what class they are and
 whether the values are missing. Being a ggplot object, you can customise
 the plot and/or change the labels if needed.
@@ -218,13 +218,15 @@ the plot and/or change the labels if needed.
 There is no missing data, or NULL entries in this dataset as shown in
 the methods utilized above.
 
+## Visualisations
+
 Now that we’ve checked to make sure that the dataset is cleaned and
 ready to use, lets do some visualisations.
 
 Scatterplots are a great way to determine if there is a linear
 correlation between different variables in your dataset.
 
-By using the pairs() function from the ggplot package, we are able to
+By using the `pairs()` function from the ggplot package, we are able to
 create a scatterplot matrix.
 
 ``` r
@@ -234,10 +236,14 @@ pairs(~Sepal.Length+Sepal.Width+Petal.Length+Sepal.Width,data=iris_data, main="I
 ```
 
 ![](Iris-Dataset-Analysis_files/figure-gfm/scatterplot-1.png)<!-- -->
-\#\# Conclusion The scatterplot matrix shows that the Sepal Length and
+\#\#\# Conclusion The scatterplot matrix shows that the Sepal Length and
 Petal Length are highly correlated. In other words, if the Sepal Length
 of the flower is long, the petal length is expected to be long as well
-and vice versa.
+and vice versa. We also see that there is some positive correlation
+between *Petal Length* and *Sepal Length*. However it is not as strong
+as the Sepal Length and Petal Length correlation.
+
+### Histograms
 
 ``` r
 library(ggplot2)
@@ -248,12 +254,18 @@ ggplot(iris_data, aes(x=Sepal.Length, fill=Species)) + geom_histogram(binwidth =
 
 This histogram shows the Sepal length of all the different species of
 flowers in the dataset. The different colors represent the different
-species. This makes it easier to identify the differences in length
-between the different species. Using the Sepal length as a feature, we
-have an easier time identifying a Setosa flower, as it has the shortest
-average length. However, it is more difficult to identify a Versicolor
-and/or Virginica Flower as the lengths are not easily
-distinguished.
+species. Using the Sepal length as a feature, we have an easier time
+identifying a Setosa flower, as it has the shortest average length.
+However, it is more difficult to identify a Versicolor and/or Virginica
+Flower as the lengths are not easily distinguished.
+
+The histogram is also a visual representation of the distribution of
+numerical data. Creating a histogram for *discrete* data simple as you
+just add the value to the plot. However for *continuous* data, you need
+to **bin** (divide the range of values into a select number of intervals
+and count how many values fall into each interval) the data. **note:
+binning this data is NOT shown
+here**
 
 ### 2D Scatterplot for Sepal Length and Sepal Width
 
@@ -269,7 +281,19 @@ qplot(Sepal.Length, Sepal.Width, data=iris_data, colour = Species)
   - Versicolor (GREEN) and Virginica (BLUE) cannot be easily
     distinguished as there is considerable overlap between the points.
 
-<!-- end list -->
+The scatterplot produced here also reflects the visualisation presented
+by the histogram. However I find that the scatterplot is much easier to
+understand compared to the histogram. The points are isolated and there
+is little overlap between them. This makes it easier to distinguish
+different points. The colors also help visually identify the class that
+each point belongs to.
+
+## Histogram vs Scatterplot
+
+One of the challenges when it comes to visualising data, is selecting
+the right plot to present. Each plot has it’s own advantages and
+disadvantages and therefore it is crucial to select the right one to
+tell your story.
 
 ``` r
 #Histogram v Scatterplot
@@ -283,85 +307,43 @@ save_plot("sepal scat v hist.png", p, ncol = 2)
 
 ![](Iris-Dataset-Analysis_files/figure-gfm/sepal%20scat%20v%20hist.png)
 
-### 2D Scatterplot for Petal Length and Petal Width
+**Histograms** should be used to *display the frequency of occuring
+data* and the histogram often uses only *one feature (found on the
+y-axis)*. The histogram is also used to show the distribution of data.
+As we can see here, the distribution is similar to a Gaussian curve.
 
-``` r
-library(cowplot)
-scatter_pet<- ggplot2::qplot(Petal.Length, Petal.Width, data=iris_data, colour = Species)
-hist_pet <- ggplot2::ggplot(iris, aes(x=Petal.Length, fill=Species)) + geom_histogram(binwidth = 0.1)
-p <- plot_grid(scatter_pet, hist_pet)
-save_plot("petal scat v hist.png", p, ncol = 2)
-```
+On the other hand the **2D-scatterplot** should be used to *show the
+relationship between two features* of your data. In this example, if we
+want to identify the characteristics of a Setosa flower, we know that it
+has high Sepal width, but short Sepal length.
 
-![](Iris-Dataset-Analysis_files/figure-gfm/petal%20scat%20v%20hist.png)
-\* Setosa flower is easily distinguished as their is no overlap between
-the other species.
+### Conclusion
 
-  - Versicolor and Virginica flowers are more easily distinguished as
-    there is significantly less overlap.
+Depending on the requirements of your analysis, selecting the correct
+graph is crucial to presenting your data. Each graph has it’s own place
+and purpose. Choose wisely.
 
-  - Compared to the sepal plot, this petal plot is more effective at
-    distinguishing the different flower species.
-
-## Conclusion
-
-Using different plots can help to visualise your data much more
-effectively. This is shown above, as the histogram is much more
-horizontally clustered and there is visual overlap, which may hide
-important data points. By utilizing the scatterplot and the different
-features (Sepal Length v Sepal Width, Petal Length v Petal Width), the
-different species can be easily distinguished.
-
-``` r
-library(ggplot2)
-ggplot(iris_data, aes(x=Sepal.Width, fill=Species)) + geom_histogram(binwidth = 0.1)
-```
-
-![](Iris-Dataset-Analysis_files/figure-gfm/hist_Sepal_width-1.png)<!-- -->
-
-This histogram shows that there isn’t much difference in sepal width
-between Virginica and Versicolor flowers, however Setosa flowers tend to
-have the highest width.
-
-``` r
-library(ggplot2)
-ggplot(iris_data, aes(x=Petal.Length, fill=Species)) + geom_histogram(binwidth = 0.1)
-```
-
-![](Iris-Dataset-Analysis_files/figure-gfm/hist_petal_Length-1.png)<!-- -->
-
-There is a clear distinction between petal lengths of the three
-different flower species. Setosa has the lowest petal length, with
-versicolor sitting in the middle, and Virginica having the highest.
-
-``` r
-library(ggplot2)
-ggplot(iris_data, aes(x=Petal.Width, fill=Species)) + geom_histogram(binwidth = 0.1)
-```
-
-![](Iris-Dataset-Analysis_files/figure-gfm/hist_Petal_Width-1.png)<!-- -->
-
-Once again, Setosa appears to have the lowest petal length, versicolor
-in the middle, and Virginica with the highest petal length.
+## Drawing insights
 
 Although this all seems very obvious initially, we are able to draw
 insights from this data. For example, the Setosa flower has the smallest
-sepal Length, petal width and petal length. Without an image as
-reference, and no prior knowledge about flowers, this data helps us to
-create an image where the Setosa flower species has small petals but a
-wide sepal.
+sepal Length, petal width and petal length, but **highest Sepal width**.
+Without an image as reference, and no prior knowledge about flowers,
+this data helps us to create an image where the Setosa flower species
+has small petals but a wide
+sepal.
 
-![Flowers](Iris-Dataset-Analysis_files/figure-gfm/Flowers.png) Based on
-previous predictions using the data from the histogram. It appears that
-we are correct. The petals appear to be very small, and the sepals
-appear to be somewhat short compared to the Virginica vlower and the
-Versicolor flower, but the sepals are the widest. This image backs up
-our prediction based on the visualised data.
+![<http://suruchifialoke.com/2016-10-13-machine-learning-tutorial-iris-classification/>](Iris-Dataset-Analysis_files/figure-gfm/Flowers.png)
+Based on previous predictions using the data from the scatterplot. We
+are correct. The petals appear to be very small, and the sepals appear
+to be somewhat short compared to the Virginica flower and the Versicolor
+flower, but the sepals are the wide and short. This image backs up our
+prediction based on the visualised data plots.
 
 References:
 
   - \[Flower image reference:
-    <https://annhubhelp.anscenter.com/lib/NewItem167.png>\]
+    <http://suruchifialoke.com/2016-10-13-machine-learning-tutorial-iris-classification/>\]
   - <https://www.r-bloggers.com/scatterplot-matrices/>
   - <https://www.littlemissdata.com/blog/simple-eda>
   - <https://medium.com/@rishav.jnit/exploratory-data-analysis-eda-on-iris-dataset-using-python-cadd850c1fc6>
