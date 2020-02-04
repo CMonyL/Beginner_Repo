@@ -288,6 +288,10 @@ is little overlap between them. This makes it easier to distinguish
 different points. The colors also help visually identify the class that
 each point belongs to.
 
+This concept could also translate to machine learning via feature
+selection. Selecting the best features for an algorithm, in order to
+best identify the type of flower.
+
 ## Histogram vs Scatterplot
 
 One of the challenges when it comes to visualising data, is selecting
@@ -339,6 +343,62 @@ are correct. The petals appear to be very small, and the sepals appear
 to be somewhat short compared to the Virginica flower and the Versicolor
 flower, but the sepals are the wide and short. This image backs up our
 prediction based on the visualised data plots.
+
+## PDF PMF and CDF Discussion
+
+As this is my attempt at Exploratory Data Anlaysis (EDA) I should
+discuss some analysis techniques. A few commonly used techniques include
+Proability Distribution Function (PDF) and Cumulative Distribution
+Function (CDF). Before these techniques can be discussed, a few key
+concepts need to be covered.
+
+### Random Variables
+
+A random variable is the quantifiable outcome of a random process. An
+example of this would be a coin toss. When you toss a coin, the outcome
+can either be **heads** or **tails**. However, you can define these
+outcomes as either 1 or 0. 1 for heads, and 0 for tails. You can also
+apply this concept to another random process such as rolling a die. You
+can quantify the outcome by the face that you land on after the die
+roll, such as 1,2,3,4,5 or 6. Random variables are often denoted by a
+captial letter (e.g. \(X\) = 1).
+
+There are two types of random variables, both of which will be discussed
+below.
+
+#### Discrete Random Variable
+
+A discrete random variable is a variable that can take a finite number
+of values or values within a certain range. In other words, discrete
+random variables are **countable** values. An example are the number of
+students currently in class. You might say, *“there were 15 students
+that turned up to class today”*. However, the number of students cannot
+go into decimal places (e.g. 15.5 students), as you can’t have half a
+student. The reason I use this example, at least in my experience, the
+number of students that *actually* turn up to class is quite random.
+Therefore the outcome is the probability of obtaining a specific value.
+
+\[p(x) = P(X) = 15\] You can read this as *the probability of \(x\) is
+equal to the probability that \(X\) is* **equal to** *15*
+
+#### Continuous Random Variable
+
+A continuous random variable is a variable that could take the form of
+any infinitely small or large number. There are no “gaps” between
+potential outcomes. An example of a continuous random variable is
+weight. If say you worked at a donut processing factory and the weight
+of the donut coming off the process line could range anywhere between
+19.8 grams and 20 grams. One item could be 19.89 grams, or 19.942 grams
+and so on, depending on how much detail you need.
+
+### Probability Mass Function
+
+The probability mass function (PMF) is a statistical term that describes
+the probability distribution of a **discrete random variable**.
+
+### Probability Density Function
+
+### Cumulative Distribution Function
 
 References:
 
