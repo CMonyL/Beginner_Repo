@@ -74,6 +74,7 @@ Though this looks like a right-skewed normal Gaussian distribution, I'll run som
 ```{r, warnings = FALSE, messages=FALSE}
 descdist(mtcars$hp, discrete=FALSE)
 ```
+
 The kurtosis and squared skewness of the horsepower data appear as a blue bubble named "Observation". It appears that the closest distribution is the **Beta** distribution. 
 
 This Shapiro-Wilk normality test also supports this statement:
@@ -86,6 +87,7 @@ As the p-value is under 0.05, we have enough evidence to reject the null hypothe
 ```{r}
 ggplot(mtcars, aes(qsec)) + geom_histogram(binwidth = 0.5)+ xlab('Quarter Mile Time') + ylab('No. of Cars') + ggtitle('Distribution of cars by Quarter mile time')
 ```
+
 This data appears to follow a Gaussian distribution. 
 
 However, we'll perform a Shapiro-Wilk Normality test to see if this is true. 
@@ -106,4 +108,5 @@ This shows a strong negative correlation.
 ```{r}
 qplot(qsec, hp, data=mtcars)
 ```
+
 This plot also shows a negative correlation with Horsepower and Quarter mile time. It appears that the more horsepower the car has, less time it takes in a quarter mile. 
