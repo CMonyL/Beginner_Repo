@@ -206,3 +206,24 @@ shapiro.test(mtcars$qsec)
 With such a high p-value, we do not have enough evidence to reject the
 null hypothesis (distribution is Normal/Gaussian), therefore we cannot
 rule out that possibility.
+
+## Correlation between Quarter mile time and Horsepower.
+
+``` r
+cor(mtcars$qsec, mtcars$hp)
+```
+
+    ## [1] -0.7082234
+
+This shows a strong negative correlation.
+
+\#\#Plotting the data
+
+``` r
+qplot(qsec, hp, data=mtcars)
+```
+
+![](mtcars_files/figure-gfm/unnamed-chunk-12-1.png)<!-- --> This plot
+also shows a negative correlation with Horsepower and Quarter mile time.
+It appears that the more horsepower the car has, less time it takes in a
+quarter mile.
