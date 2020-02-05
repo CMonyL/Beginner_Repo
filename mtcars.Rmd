@@ -13,6 +13,9 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2) #mtcars dataset part of ggplot2 package and visualisation
 library(skimr) #to skim dataset
 library(visdat)
+library(MASS)
+library(fitdistrplus)
+library(logspline)
 ```
 
 This will be the second installment of my portfolio. In this markdown document, I'll be analysing the mtcars dataset. 
@@ -33,7 +36,7 @@ Exploring the `?mtcars` function, I'm able to understand what each variable mean
 * wt: Weight (1000lbs)
 * qsec 1/4 mile time
 * vs: Engine(0 = V-Shape, 1 = Straight)
-* am: Transmission(0 = automattic, 1 = manual)
+* am: Transmission(0 = automatic, 1 = manual)
 * gear: number of forward gears
 * carb: Number of carburetors
 
@@ -43,9 +46,52 @@ skim(mtcars)
 ```
 Under the *Variable type* table, the *n_missing* column shows a value of 0 for all variables of this dataset. This is good news as there is no missing data, and thus we can continue. However, this is to be expected, as this dataset was built into the immensly popular *ggplot2* package.
 
+We also have 11 variables, which were listed previously. 
+
 To visualise the different datatypes within the mtcars dataset we'll use the `vis_dat()` function from the `visdat` package
 
 ```{r}
 vis_dat(mtcars)
 ```
+This plot shows us that all the values in the dataset are of type numeric.
+### Summary Statistics: 
+```{r}
+summary(mtcars)
+```
+
+## The Question
+With all this information in hand, I would like to find out if **more horsepower results in a lower 1/4 mile time. **
+
+To begin, the distribution of the required data should be visualised to get a feel for it. 
+
+### Distribution of cars by Horsepower
+```{r}
+ggplot(mtcars, aes(hp)) + geom_histogram(binwidth = 10 )+ xlab('Horsepower') + ylab('No. of Cars') + ggtitle('Distribution of cars by Horsepower')
+```
+
+Though this looks like a right-skewed normal Gaussian distribution, I'll run some tests to see if there are any other candidates.
+
+```{r, warnings = FALSE, messages=FALSE}
+descdist(mtcars$hp, discrete=FALSE)
+```
+The kurtosis and squared skewness of the horsepower data appear as a blue bubble named "Observation". It appears that the closest distribution is the **Beta** distribution. 
+
+This Shapiro-Wilk normality test also supports this statement:
+```{r}
+shapiro.test(mtcars$hp)
+```
+As the p-value is under 0.05, we have enough evidence to reject the null hypothesis that the data is fits a right-skewed normal distribution. 
+
+### Distribution of cars by Quarter mile time
+```{r}
+ggplot(mtcars, aes(qsec)) + geom_histogram(binwidth = 0.5)+ xlab('Quarter Mile Time') + ylab('No. of Cars') + ggtitle('Distribution of cars by Quarter mile time')
+```
+This data appears to follow a Gaussian distribution. 
+
+However, we'll perform a Shapiro-Wilk Normality test to see if this is true. 
+
+```{r}
+shapiro.test(mtcars$qsec)
+```
+With such a high p-value, we do not have enough evidence to reject the null hypothesis (distribution is Normal/Gaussian), therefore we cannot rule out that possibility. 
 
