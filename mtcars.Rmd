@@ -1,5 +1,5 @@
 ---
-title: "MT Cars analysis"
+title: "MT Cars Analysis"
 author: "Chan Mony Lach"
 date: "05/02/2020"
 output: rmarkdown::github_document
@@ -9,22 +9,43 @@ output: rmarkdown::github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r, message=FALSE}
+library(ggplot2) #mtcars dataset part of ggplot2 package and visualisation
+library(skimr) #to skim dataset
+library(visdat)
 ```
 
-## Including Plots
+This will be the second installment of my portfolio. In this markdown document, I'll be analysing the mtcars dataset. 
 
-You can also embed plots, for example:
+> The mtcars data was extracted from the 1974 Motor Trend US magazine. It compares the fuel consumption and performance of thirty-two different automobiles based on ten different aspects of their design.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+A snippet of this dataset is shown below: 
+```{r}
+head(mtcars)
+```
+Exploring the `?mtcars` function, I'm able to understand what each variable means. 
+
+* mpg: Miles/(US) gallon
+* cyl: Number of Cylinders
+* disp: Displacement (cu.in.)
+* hp: Gross Horsepower
+* drat Rear axle ratio
+* wt: Weight (1000lbs)
+* qsec 1/4 mile time
+* vs: Engine(0 = V-Shape, 1 = Straight)
+* am: Transmission(0 = automattic, 1 = manual)
+* gear: number of forward gears
+* carb: Number of carburetors
+
+To get a better understanding of the dataset, the `skim()` function will be used.
+```{r}
+skim(mtcars)
+```
+Under the *Variable type* table, the *n_missing* column shows a value of 0 for all variables of this dataset. This is good news as there is no missing data, and thus we can continue. However, this is to be expected, as this dataset was built into the immensly popular *ggplot2* package.
+
+To visualise the different datatypes within the mtcars dataset we'll use the `vis_dat()` function from the `visdat` package
+
+```{r}
+vis_dat(mtcars)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
