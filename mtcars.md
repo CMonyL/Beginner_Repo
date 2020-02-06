@@ -187,8 +187,9 @@ distribution.
 ggplot(mtcars, aes(qsec)) + geom_histogram(binwidth = 0.5)+ xlab('Quarter Mile Time') + ylab('No. of Cars') + ggtitle('Distribution of cars by Quarter mile time')
 ```
 
-![](mtcars_files/figure-gfm/unnamed-chunk-9-1.png)<!-- --> This data
-appears to follow a Gaussian distribution.
+![](mtcars_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+This data appears to follow a Gaussian distribution.
 
 However, we’ll perform a Shapiro-Wilk Normality test to see if this is
 true.
@@ -223,7 +224,61 @@ This shows a strong negative correlation.
 qplot(qsec, hp, data=mtcars)
 ```
 
-![](mtcars_files/figure-gfm/unnamed-chunk-12-1.png)<!-- --> This plot
-also shows a negative correlation with Horsepower and Quarter mile time.
-It appears that the more horsepower the car has, less time it takes in a
-quarter mile.
+![](mtcars_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+
+This plot also shows a negative correlation with Horsepower and Quarter
+mile time. It appears that the more horsepower the car has, less time it
+takes in a quarter mile. Intuitively this makes sense. The more power a
+vehicle can produce, the quicker it goes. However, there are exceptions
+to this. What about heavier vehicles? Would their weight be compensated
+by extra
+horsepower?
+
+## Visualising weight
+
+``` r
+qplot(mtcars$wt, geom = "histogram", xlab = "Weight in 1000lbs", ylab = "No. of cars", main = "Distribution of vehicle weight")
+```
+
+![](mtcars_files/figure-gfm/unnamed-chunk-13-1.png)<!-- --> The vehicles
+appear to be around the 3000lbs - 4000lbs range. Next we’ll check to see
+the relationship between weight and 1/4 mile times.
+
+``` r
+qplot(wt, qsec, data=mtcars)
+```
+
+![](mtcars_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+
+This plot is a little difficult to interpret whether there is any
+correlation at all between the two variables. Therefore a Pearson R
+Correlation test will be performed to check for correlation. A Pearson
+correlation test will check if there is a statistically significant
+relationship between both weight (wt) and 1/4 mile time (qsec).
+
+``` r
+cor.test(mtcars$wt, mtcars$qsec, method = "pearson")
+```
+
+    ## 
+    ##  Pearson's product-moment correlation
+    ## 
+    ## data:  mtcars$wt and mtcars$qsec
+    ## t = -0.97191, df = 30, p-value = 0.3389
+    ## alternative hypothesis: true correlation is not equal to 0
+    ## 95 percent confidence interval:
+    ##  -0.4933536  0.1852649
+    ## sample estimates:
+    ##        cor 
+    ## -0.1747159
+
+### Interpretation
+
+  - `t` is the t-test statistic value `(t = -0.97191)`,
+  - `df` is the degrees of freedom `(df = 30)`,
+  - `p-value` is the significance level of the t-test `(p-value
+    = 0.3389)`,
+  - `conf-int` is the confidence interval of the correlation coefficient
+    at 95% \`(conf.int = \[-0.4933536, 0.1852649\]),
+  - `sample estimates` is the correlation co-effcient `cor =
+    -0.1747159`.
